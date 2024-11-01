@@ -73,3 +73,59 @@ int main()
     close(fd);
     return 0;
 }
+
+/*
+
+Example: Adjusting Terminal Settings
+A classic example is adjusting terminal settings, such as changing the baud rate of a serial port. Here’s a simplified overview of how it might be implemented:
+
+Device Driver: A driver for a serial device might implement an ioctl function that allows user-space applications to configure various parameters of the serial port.
+
+User-Space Application: A user-space application can use ioctl to change settings like baud rate, parity, or flow control.
+
+Here’s a basic example:
+
+User-Space Code Example (C):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <linux/serial.h>
+#include <sys/ioctl.h>
+#include <string.h>
+
+int main() {
+    int fd = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY); // Open the serial port
+    if (fd == -1) {
+        perror("Unable to open /dev/ttyS0");
+        return EXIT_FAILURE;
+    }
+
+    struct serial_struct ser_info;
+    
+    // Get current serial port settings
+    if (ioctl(fd, TIOCGSERIAL, &ser_info) == -1) {
+        perror("ioctl TIOCGSERIAL failed");
+        close(fd);
+        return EXIT_FAILURE;
+    }
+
+    // Print current settings
+    printf("Current baud rate: %d\n", ser_info.baud_base);
+
+    // Set new baud rate (for example, to 115200)
+    ser_info.baud_base = 115200;
+    if (ioctl(fd, TIOCSSERIAL, &ser_info) == -1) {
+        perror("ioctl TIOCSSERIAL failed");
+        close(fd);
+        return EXIT_FAILURE;
+    }
+
+    printf("Baud rate set to 115200\n");
+
+    close(fd);
+    return EXIT_SUCCESS;
+}
+
+ */
