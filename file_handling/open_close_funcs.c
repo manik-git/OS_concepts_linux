@@ -54,14 +54,16 @@ int main()
     int fd = open("file2.txt", O_CREAT | O_RDWR, 0766); // Create the file with read-write permissions
                                                         // 0766: initial 0 is to represent octal. 7(111) is for user permissions, 6(110) is for group permissons, 6(110) is for others permissions
 
-    if (fd == -1) {
+    if (fd == -1) 
+    {
         perror("Error opening file");
         exit(1);
     }
 
     printf("fd : %d\n", fd);
 
-    if (write(fd, "this is text\n", 13) != 13) {
+    if (write(fd, "this is text\n", 13) != 13) 
+    {
         perror("Error writing to file");
         close(fd);
         exit(1);
@@ -71,7 +73,8 @@ int main()
     lseek(fd, 0, SEEK_SET);
 
     char buf[15] = {0};
-    if (read(fd, buf, 15) == -1) {
+    if (read(fd, buf, 15) == -1) 
+    {
         perror("Error reading from file");
         close(fd);
         exit(1);
