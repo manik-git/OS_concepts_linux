@@ -52,6 +52,7 @@
 int main()
 {
     int fd = open("file2.txt", O_CREAT | O_RDWR, 0766); // Create the file with read-write permissions
+                                                        // 0766: initial 0 is to represent octal. 7(111) is for user permissions, 6(110) is for group permissons, 6(110) is for others permissions
 
     if (fd == -1) {
         perror("Error opening file");
