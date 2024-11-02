@@ -11,8 +11,8 @@
             - O_RDONLY  : open for read only
             - O_WRONLY  : open for write only
             - O_RDWR    : open for reading and writing
-            - o_APPEND  : write at the end of the file 
-            - O_TRUNC   : set length of the file to zero, discarding existing content
+            - o_APPEND  : write at the end of the file. that means at the time of opening the offset will start from the end of the file. 
+            - O_TRUNC   : set length of the file to zero, discarding existing content. that means at the time of opening the offset will start at the start of the file. if you start writing there and stop writing before the last text, the remaining text will still be there. 
             - O_CREAT   : create the file, if necessary, with permissions given in mode
             - O_EXCL    : used with O_CREAT. now if the file already exists, open will fail
     - the third argument mode is about user, group and others permission request to read, write and execute the file being created.
