@@ -1,6 +1,10 @@
 /*
     purpose of this code is to copy a 1 KB file in chunks of 1 KB to another file 1024 times to make a 1 MB file.
     run: la -al after running this code to verify
+
+    note: 
+    - if you use O_TRUNC    : that means at the time of opening the offset will start at the start of the file. if you start writing there and stop writing before the last text, the remaining text will still be there. 
+    - if you use O_APPEND   : that means at the time of opening the offset will start from the end of the file. 
 */
 
 #include <stdio.h>
