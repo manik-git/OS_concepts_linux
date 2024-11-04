@@ -54,6 +54,15 @@
     { ... }
 */
 
+/*
+    int dup(int fd);
+    int dup2(int fd, int fd2);
+    - duplicate fd, giving 2 or more fd's access to the same file
+    - dup returns new fd that can access the same file access by the fd passed in argument
+    - dup2 copies file fd to another. now both can access the same file.  
+    - useful when multiple processes communicating through pipes(FIFO)
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
