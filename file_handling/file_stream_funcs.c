@@ -57,6 +57,14 @@
         - n-1 characters have been transferred 
         - EOF is reached
     - returns pointer to buf. if EOF file is reached then set EOP indicator in stream and returns null. if error then returns null and errno shows the error.
+
+    FILE *fdopen(int fildes, const char *mode);
+    - opens a stream for the passed file descriptor. 
+    - basically, the function provides a stdio buffer on an already opened file descriptor
+
+    int fileno(FILE *stream);
+    - returns low-level file descriptor opened for the file for this stream
+
 */
 
 #include <stdio.h>
