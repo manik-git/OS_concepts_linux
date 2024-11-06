@@ -1,0 +1,44 @@
+In C, the <fcntl.h> header defines a set of file descriptor flags and file status flags used for manipulating file descriptors. These flags are primarily used with functions like open(), fcntl(), and dup2() to manage and control file behavior.
+
+Here’s a list of common flags defined in <fcntl.h>:
+
+1. File Access Modes
+These are used with the open() function to specify how the file should be accessed.
+
+O_RDONLY: Open the file for read-only access.
+O_WRONLY: Open the file for write-only access.
+O_RDWR: Open the file for both reading and writing.
+
+
+2. File Creation Flags
+These flags modify the behavior of file creation and handling.
+
+O_CREAT: Create the file if it doesn’t already exist.
+O_EXCL: Used with O_CREAT; ensures that the open() call fails if the file already exists.
+O_TRUNC: Truncate the file to zero length if it already exists and is opened for writing.
+O_APPEND: Open the file in append mode. Writes will add data to the end of the file.
+
+
+3. File Status Flags
+These flags define specific behaviors for file descriptors. They can be set or modified using fcntl().
+
+O_NONBLOCK: Open the file in non-blocking mode. For instance, a read operation will return immediately if there’s no data available.
+O_SYNC: Ensure that writes are fully completed (including flushing to disk) before returning from a write operation.
+O_DSYNC: Similar to O_SYNC, but only data (not metadata) is synchronized.
+O_RSYNC: Perform read operations synchronously with write operations.
+O_NOFOLLOW: Prevent following symbolic links.
+O_CLOEXEC: Close the file descriptor when executing a new program (useful with exec family functions).
+
+
+4. File Descriptor Flags
+These flags modify the behavior of file descriptors and are managed with fcntl().
+
+FD_CLOEXEC: Close the file descriptor automatically when an exec function is called.
+
+
+5. Additional Flags (System-Dependent)
+Some systems provide additional flags:
+
+O_TMPFILE: Create a temporary file that is unlinked from the filesystem and is deleted automatically when closed. Available on Linux.
+O_DIRECT: Minimize cache effects of file I/O by performing direct I/O, which bypasses the buffer cache.
+O_ASYNC: Enable asynchronous I/O notifications.
