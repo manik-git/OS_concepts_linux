@@ -1,0 +1,19 @@
+The mmap() function in Linux and UNIX-like systems maps a file or device into memory, allowing the file contents to be accessed like regular memory. However, it doesn't create a separate or additional space in memory for the file; rather, it maps the file directly into the process's address space. Here’s how it works in more detail:
+
+Memory Mapping: When mmap() is used, the file contents are mapped into the virtual address space of the calling process. This means that the process can access the file contents using pointers, without needing to read or write explicitly to the file through system calls like read() and write().
+
+Shared Physical Memory: mmap() uses the existing physical memory pages, shared between the file on disk and the process. This is efficient because it avoids copying file contents into separate memory buffers. For instance, if multiple processes use mmap() on the same file with shared mapping, they all map to the same physical pages.
+
+Page Faults and Lazy Loading: The data is not loaded into memory immediately. Instead, the operating system uses "lazy loading," meaning that file content is loaded page by page as the process accesses it. When a process accesses a part of the file that hasn’t been loaded yet, a page fault occurs, and the OS loads that page into memory.
+
+Mapping Options:
+
+MAP_SHARED: With this option, changes made to the memory region are reflected in the underlying file (assuming it’s writable) and are visible to other processes that map the same file.
+MAP_PRIVATE: This option creates a private copy-on-write mapping. Changes are not written back to the original file, and other processes don’t see the changes.
+Virtual Address Space, Not Separate Memory: The mapping resides in the virtual address space of the process, meaning it doesn’t create an additional memory allocation separate from the process's address space. It’s merely a new way of viewing the file's contents directly within the memory of the process.
+
+
+
+
+
+note: every process gets its memory in the virtual address space that maps to the physical address somehow. So the virtual address value might be different from actual physical location.
