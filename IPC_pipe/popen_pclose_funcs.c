@@ -32,7 +32,7 @@ int main()
         int nbytes;
         if((nbytes = fread(buf, sizeof(char), BUFSIZ, in_stream)) > 0)
         {
-            printf("command returned:\n%s\n", buf);
+            printf("command(program) returned:\n%s\n", buf);
         }
         pclose(in_stream);
 
@@ -43,16 +43,15 @@ int main()
         exit(-1);
     }
 
-    printf("#################################\n\n");
-
     /*give some input to another program*/
+    
     memset(buf, '\0', sizeof(buf));
     sprintf(buf, "good vibes.....\n");
 
     FILE *out_stream = popen("od -c", "w");
     if(out_stream)
     {
-        printf("writing...\n");
+        printf("writing to command(program) ...\n");
         fwrite(buf, sizeof(char), BUFSIZ, out_stream);
         pclose(out_stream);
     }
