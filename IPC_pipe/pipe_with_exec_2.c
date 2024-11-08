@@ -1,3 +1,7 @@
+/*
+    to be used in execl() in pipe_with_exec_1
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
