@@ -1,3 +1,14 @@
+/*
+    - open server fifo created by sever.c
+    - create a client name string with own PID and create client fifo with that name
+        - fill data structure to be passed to server on server fifo
+        - write data to server fifo
+        - open cllient fifo create above
+        - read precessed data (response) sent from the server on client fifo
+        - close client fifo
+        - repeat the number of times the data needs to be sent to server on server fifo
+*/
+
 #include "client.h"
 
 int main()
@@ -8,10 +19,10 @@ int main()
 
     server_fifo_fd = open(SERVER_FIFO_NAME, O_WRONLY);
     
-    my_data.client_pid = getpid();
-    
     sprintf(client_fifo_name, CLIENT_FIFO_NAME, my_data.client_pid);
     mkfifo(client_fifo_name, 0777);
+
+    my_data.client_pid = getpid();
 
     for(int i = 0; i < 5; i++)
     {

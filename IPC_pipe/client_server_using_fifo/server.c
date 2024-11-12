@@ -1,3 +1,14 @@
+/*
+    - make and open a server fifo to take in requests from multiple clients
+    - wait for 10 seconds, then read data on server fifo
+        - read and process data sent by the client
+        - create a client fifo name string using PID sent by the client
+        - open the client FIFO using that name
+        - send back response to the client 
+        - close client FIFO
+        - repeat till there is data in server fifo
+*/
+
 #include "client.h"
 
 int main()

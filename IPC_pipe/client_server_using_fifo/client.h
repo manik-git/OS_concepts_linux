@@ -1,3 +1,12 @@
+/*
+    common header file for client.c and server.c
+    - FIFO name macros
+    - data structure for the data to be passed between server and client
+
+    client would pass its own PID and some data to be processed
+    the PID sent by client would be used by server to open a FIFO (created by that client) to send response to the request
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

@@ -1,5 +1,5 @@
 /*
-
+    to be run in parallel with fifo_named_pipe_2.c 
 */
 
 #include <stdio.h>
